@@ -2,7 +2,7 @@ const { Expo } = require('expo-server-sdk');
 const nodemailer = require("nodemailer");
 
 
-export async function sendMail(data)
+ async function sendMail(data)
   {  	
       //let ret = JSON.parse(data);
       console.log(data);
@@ -43,14 +43,18 @@ export async function sendMail(data)
   return {"ug": data.ug,"status": "ok","message": "Message sent! ID: " + info.messageId};
   }
   
-  export function cleanEmail(em){
+   function cleanEmail(em){
 	  return em.replace(/[`~!#$%^&*()_|+\-=?;:'",<>\{\}\[\]\\\/]/gi, '');
   }
   
-  export function isEmpty(obj) {
+   function isEmpty(obj) {
     for(var prop in obj) {
         if(obj.hasOwnProperty(prop))
             return false;
     }
     return JSON.stringify(obj) === JSON.stringify({});
 }
+
+exports.sendMail = sendMail;
+exports.cleanEmail = cleanEmail;
+exports.isEmpty = isEmpty;
