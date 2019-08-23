@@ -1,6 +1,5 @@
 'use strict';
-
-import {config} from './config';
+import config from './config';
 import Helpers from './Helpers';
 import { spawn } from 'child_process';
 import {express} from 'express';
