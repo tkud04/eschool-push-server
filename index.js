@@ -25,7 +25,6 @@ express()
     if(Helpers.isEmpty(req.query)){
 	
 	 result.message = "Object missing (request body is empty)";
-     result.message = err;
 	 res.json(result);
     }
     else{
