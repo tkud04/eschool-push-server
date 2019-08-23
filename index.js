@@ -5,7 +5,6 @@ import Helpers from './Helpers';
 import { spawn } from 'child_process';
 import {express} from 'express';
 import {path} from 'path';
-import {nodemailer} from "nodemailer";
 const PORT = process.env.PORT || 5000;
 let result = '';  
 
