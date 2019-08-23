@@ -22,7 +22,8 @@ express()
               
   let result = {"ug": req.query.ug,"status": "error","message": "Unknown"};
   
-    if(Helpers.isEmpty(req.body)){
+    if(Helpers.isEmpty(req.query)){
+	
 	 result.message = "Object missing (request body is empty)";
      result.message = err;
 	 res.json(result);
