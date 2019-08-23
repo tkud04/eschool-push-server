@@ -48,7 +48,7 @@ express()
       //res.render('index',{result: result});  
     }
   })
-  .post('push-token', (req, res) => {     
+  .get('/push-token', (req, res) => {     
      let result = {"status": "error","message": "Unknown"};  
     if(Helpers.isEmpty(req.body)){
 	
@@ -56,7 +56,7 @@ express()
 	 res.json(result);
     }
 	else{
-		console.log(JSON.stringify(req.body));
+		console.log(req.body);
 		res.send("ok");
 	}
   })
