@@ -1,6 +1,5 @@
 {
   "name": "eschool-push-server",
-  "type": "module",
   "version": "1.0.0",
   "description": "Expo Push Notifications endpoint for ESchool NG",
   "engines": {

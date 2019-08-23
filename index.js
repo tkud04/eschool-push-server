@@ -1,9 +1,10 @@
 'use strict';
-import config from './config';
-import Helpers from './Helpers';
-import { spawn } from 'child_process';
-import {express} from 'express';
-import {path} from 'path';
+
+const config = require('./config');
+const Helpers = require('./Helpers');
+const { spawn } = require('child_process');
+const express = require('express');
+const path = require('path');
 const PORT = process.env.PORT || 5000;
 let result = '';  
 

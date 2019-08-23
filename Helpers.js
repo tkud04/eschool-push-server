@@ -1,5 +1,5 @@
-import Expo from 'expo-server-sdk';
-import {nodemailer} from "nodemailer";
+const { Expo } = require('expo-server-sdk');
+const nodemailer = require("nodemailer");
 
 
 export async function sendMail(data)
