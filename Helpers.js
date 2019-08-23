@@ -75,3 +75,4 @@ const client = new MongoClient(mongoURL);
 exports.sendMail = sendMail;
 exports.cleanEmail = cleanEmail;
 exports.isEmpty = isEmpty;
+exports.testDB = testDB;
