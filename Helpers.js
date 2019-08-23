@@ -46,3 +46,11 @@ export async function sendMail(data)
   export function cleanEmail(em){
 	  return em.replace(/[`~!#$%^&*()_|+\-=?;:'",<>\{\}\[\]\\\/]/gi, '');
   }
+  
+  export function isEmpty(obj) {
+    for(var prop in obj) {
+        if(obj.hasOwnProperty(prop))
+            return false;
+    }
+    return JSON.stringify(obj) === JSON.stringify({});
+}
