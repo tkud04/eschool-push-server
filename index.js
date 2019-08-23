@@ -20,7 +20,15 @@ express()
                 };
 	**/
               
-        dt = {receivers: Helpers.cleanEmail(req.query.receivers),
+  let result = {"ug": req.query.ug,"status": "error","message": "Unknown"};
+  
+    if(Helpers.isEmpty(req.body)){
+	 result.message = "Object missing (request body is empty)";
+     result.message = err;
+	 res.json(result);
+    }
+    else{
+		dt = {receivers: Helpers.cleanEmail(req.query.receivers),
                     subject: req.query.subject,
                     message: decodeURI(req.query.message),
                     sn: req.query.sn,
@@ -35,14 +43,7 @@ express()
                           //auth: req.query.auth
                       }
                    };
-  let result = {"ug": req.query.ug,"status": "error","message": "Unknown"};
-  
-    if(Helpers.isEmpty(req.body)){
-	 result.message = "Object missing (request body is empty)";
-     result.message = err;
-	 res.json(result);
-    }
-    else{
+		
       Helpers.sendMail(dt).then((ret) => {console.log(ret); res.json(ret)}).catch((err) => {console.log(err); result.message = err; res.json(result)});
       //res.render('index',{result: result});  
     }
