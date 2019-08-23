@@ -6,6 +6,7 @@ const { spawn } = require('child_process');
 const express = require('express');
 const path = require('path');
 const PORT = process.env.PORT || 5000;
+
 let result = '';  
 
 express()
@@ -50,15 +51,22 @@ express()
   })
   .get('/push-token', (req, res) => {     
      let result = {"status": "error","message": "Unknown"};  
-    if(Helpers.isEmpty(req.body)){
+    if(Helpers.isEmpty(req.query)){
 	
 	 result.message = "Object missing (request body is empty)";
 	 res.json(result);
     }
 	else{
-		console.log(req.body);
+		 au = req.query.au;
+		 tk = req.query.tk;
+		console.log("au: " + au + "\ntk: " + tk);
 		res.send("ok");
+		
 	}
+  })
+  .get('/db-test', (req, res) => {     
+     Helpers.testDB();
+		res.send("ok");
   })
   
   .listen(PORT, () => console.log(`Listening on ${ PORT }`));

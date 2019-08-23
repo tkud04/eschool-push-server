@@ -1,7 +1,10 @@
 const { Expo } = require('expo-server-sdk');
 const nodemailer = require("nodemailer");
-
-
+const MongoClient = require('mongodb').MongoClient;
+const mongoURL = "mongodb://heroku_tc6f7mwc:mgbi1nk3n2dr3e5pnau3vnjuqh@ds113835.mlab.com:13835";
+const dbName = "heroku_tc6f7mwc";
+const client = new MongoClient(mongoURL);
+      
  async function sendMail(data)
   {  	
       //let ret = JSON.parse(data);
@@ -52,6 +55,21 @@ const nodemailer = require("nodemailer");
 	if(typeof(obj) === 'undefined' || obj === null) ret = false;
 	else ret = true;
 	return ret;
+  }
+  
+  function testDB(){  
+	  client.connect((err) => {
+		  if(err !== null){
+			  console.log(error);
+		  }
+		  else{
+			  db = client.db(dbName);
+			console.log("db connected"); 
+            client.close();			
+		  }
+		  
+		  
+	  });
   }
 
 exports.sendMail = sendMail;
