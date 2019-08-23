@@ -48,6 +48,18 @@ express()
       //res.render('index',{result: result});  
     }
   })
+  .post('push-token', (req, res) => {     
+     let result = {"status": "error","message": "Unknown"};  
+    if(Helpers.isEmpty(req.body)){
+	
+	 result.message = "Object missing (request body is empty)";
+	 res.json(result);
+    }
+	else{
+		console.log(JSON.stringify(req.body));
+		res.send("ok");
+	}
+  })
   
   .listen(PORT, () => console.log(`Listening on ${ PORT }`));
   
