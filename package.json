@@ -1,7 +1,8 @@
 {
-  "name": "nodemailer-amqp-example",
+  "name": "eschool-push-server",
+  "type": "module",
   "version": "1.0.0",
-  "description": "An example of using Nodemailer with RabbitMQ",
+  "description": "Expo Push Notifications endpoint for ESchool NG",
   "engines": {
     "node": "10.x"
   },
