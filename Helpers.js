@@ -48,12 +48,11 @@ const nodemailer = require("nodemailer");
   }
   
    function isEmpty(obj) {
-    for(var prop in obj) {
-        if(obj.hasOwnProperty(prop))
-            return false;
-    }
-    return JSON.stringify(obj) === JSON.stringify({});
-}
+    let ret = null;
+	if(typeof(obj) === 'undefined' || obj === null) ret = false;
+	else ret = true;
+	return ret;
+  }
 
 exports.sendMail = sendMail;
 exports.cleanEmail = cleanEmail;
