@@ -107,12 +107,14 @@ express()
 		let tks = JSON.parse(body);
 		let tt = [];
 		
-		for(let t of tks){
-			if(t.student_id !== null && t.class_id === class_id){
-				tt.push(t.token);
-			}
+		if(tks.status === "ok"){
+		   for(let t of tks){
+			   if(t.student_id !== null && t.class_id === class_id){
+				   tt.push(t.token);
+			   }
+		    }
+		   if(tt.length > 0) Helpers.sendNotifications(tt);
 		}
-		if(tt.length > 0 && tks.status === "ok") Helpers.sendNotifications(tt);
      });
 	}
 		
