@@ -3,7 +3,8 @@ const nodemailer = require("nodemailer");
 const MongoClient = require('mongodb').MongoClient;
 const mongoURL = "mongodb://heroku_tc6f7mwc:mgbi1nk3n2dr3e5pnau3vnjuqh@ds113835.mlab.com:13835";
 const dbName = "heroku_tc6f7mwc";
-const client = new MongoClient(mongoURL, {useNewUrlParser: true, useUnifiedTopology: true});
+const instance = new MongoClient(mongoURL, {useNewUrlParser: true, useUnifiedTopology: true});
+const db;
       
  async function sendMail(data)
   {  	
@@ -58,9 +59,9 @@ const client = new MongoClient(mongoURL, {useNewUrlParser: true, useUnifiedTopol
   }
   
   function testDB(){  
-	  client.connect((err) => {
+	  instance.connect((err,client) => {
 		  if(err === null){
-			  console.log(err);
+			  throw err;
 		  }
 		  else{
 			  db = client.db(dbName);
