@@ -169,7 +169,7 @@ express()
 		
 		if(tks.status === "ok"){
 		   for(let t of tks.data){
-			   if(t.student_id !== null && t.class_id === class_id){
+			   if(t.student_id !== null){
 				   tt.push(t.token);
 			   }
 		    }
