@@ -4,7 +4,7 @@ const MongoClient = require('mongodb').MongoClient;
 const mongoURL = "mongodb://heroku_tc6f7mwc:mgbi1nk3n2dr3e5pnau3vnjuqh@ds113835.mlab.com:13835";
 const dbName = "heroku_tc6f7mwc";
 const instance = new MongoClient(mongoURL, {useNewUrlParser: true, useUnifiedTopology: true});
-const db;
+const db = null;
       
  async function sendMail(data)
   {  	
