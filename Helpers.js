@@ -94,7 +94,7 @@ for (let pushToken of pushTokens) {
     to: pushToken,
 	title: dat.title,
     sound: 'default',
-    body: dat.message,
+    body: dat.msg,
     data: { withSome: 'data' },
   })
 }

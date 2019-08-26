@@ -94,7 +94,6 @@ express()
     if(req.query.cid === null){
 	
 	 result.message = "Object missing (request body is empty)";
-	 res.json(result);
     }
 	else{
 	let class_id = req.query.cid;
@@ -124,14 +123,15 @@ express()
 				title: n_title,
 				msg: n_msg,
 			};
-			let rett = {"status": "ok","message": "No students"};
-		   if(tt.length > 0) rett = Helpers.sendNotifications(tt,dut);
+		   if(tt.length > 0){
+			result.status = "ok";
+            result.message = Helpers.sendNotifications(tt,dut);			
+		   }
 		}
 		
      });
-	 res.json(rett);
 	}
-		
+	 res.json(result);
   })
   
   .listen(PORT, () => console.log(`Listening on ${ PORT }`));
