@@ -105,8 +105,11 @@ express()
         console.log('statusCode:', response && response.statusCode); // Print the response status code if a response was received
         console.log('body:', body); // Print the HTML for the Google homepage.
 		let tks = JSON.parse(body);
+		console.log(tks);
+		
 		let tt = [];
 		
+		/**
 		if(tks.status === "ok"){
 		   for(let t of tks){
 			   if(t.student_id !== null && t.class_id === class_id){
@@ -115,6 +118,7 @@ express()
 		    }
 		   if(tt.length > 0) Helpers.sendNotifications(tt);
 		}
+		**/
      });
 	}
 		
