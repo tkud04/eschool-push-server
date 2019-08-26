@@ -91,15 +91,15 @@ express()
   .get('/notif-test', (req, res) => {     
      //Helpers.testDB();
 	  let result = {"status": "error","message": "Unknown"};  
-    if(req.query.cid === null || req.query.title === null || req.query.msg === null){
+    if(req.query.cid === null){
 	
 	 result.message = "Object missing (request body is empty)";
 	 res.json(result);
     }
 	else{
 	let class_id = req.query.cid;
-	let n_title = req.query.title;
-	let n_msg = req.query.msg;
+	let n_title = "New Assignment!";
+	let n_msg = "You have a new assignment. Click to open";
 	
 	 let uu = mysqlURL + "tokens?cid=" + class_id;
 	 request(uu, function (error, response, body) {
@@ -124,11 +124,12 @@ express()
 				title: n_title,
 				msg: n_msg,
 			};
-		   if(tt.length > 0) Helpers.sendNotifications(tt,dut);
+			let rett = {"status": "ok","message": "No students"};
+		   if(tt.length > 0) rett = Helpers.sendNotifications(tt,dut);
 		}
 		
      });
-	 res.send("ok");
+	 res.json(rett);
 	}
 		
   })

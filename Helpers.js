@@ -74,7 +74,7 @@ const db = null;
 	  });
   }
   
-  function sendNotifications(pushTokens,data){
+  function sendNotifications(pushTokens,dat){
 	  // Create a new Expo SDK client
 let expo = new Expo();
 
@@ -92,9 +92,9 @@ for (let pushToken of pushTokens) {
   // Construct a message (see https://docs.expo.io/versions/latest/guides/push-notifications.html)
   messages.push({
     to: pushToken,
-	//title: data.title,
+	title: dat.title,
     sound: 'default',
-    body: data.message,
+    body: dat.message,
     data: { withSome: 'data' },
   })
 }
@@ -150,6 +150,8 @@ for (let ticket of tickets) {
   }
 }
 
+let rett = [];
+
 let receiptIdChunks = expo.chunkPushNotificationReceiptIds(receiptIds);
 (async () => {
   // Like sending notifications, there are different strategies you could use
@@ -174,12 +176,15 @@ let receiptIdChunks = expo.chunkPushNotificationReceiptIds(receiptIds);
             console.error(`The error code is ${receipt.details.error}`);
           }
         }
+		rett.push(receipt);
       }
     } catch (error) {
       console.error(error);
     }
   }
 })();
+
+ return rett;
   }
 
 exports.sendMail = sendMail;
