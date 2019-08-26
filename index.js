@@ -97,7 +97,7 @@ express()
 	 res.json(result);
     }
 	else{
-	let class_id = req.cid;
+	let class_id = req.query.cid;
 	 let uu = mysqlURL + "tokens?cid=" + class_id;
 	 request(uu, function (error, response, body) {
         console.error('error:', error); // Print the error if one occurred
