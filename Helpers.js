@@ -5,7 +5,7 @@ const mongoURL = "mongodb://heroku_tc6f7mwc:mgbi1nk3n2dr3e5pnau3vnjuqh@ds113835.
 const dbName = "heroku_tc6f7mwc";
 const instance = new MongoClient(mongoURL, {useNewUrlParser: true, useUnifiedTopology: true});
 const db = null;
-const mysqlURL = "https://powerful-tundra-70186.herokuapp.com/";
+
       
  async function sendMail(data)
   {  	
