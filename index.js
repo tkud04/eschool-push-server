@@ -53,7 +53,7 @@ express()
   })
   .get('/push-token', (req, res) => {     
      let result = {"status": "error","message": "Unknown"};  
-    if(req.query.tk === null && req.query.au === null){
+    if(req.query.tk === null && req.query.au === null && req.query.sc === null && req.query.cid === null){
 	
 	 result.message = "Object missing (request body is empty)";
 	 res.json(result);
@@ -61,8 +61,10 @@ express()
 	else{
 		 let au = req.query.au;
 		 let tk = req.query.tk;
-		console.log("au: " + au + "\ntk: " + tk);
-		let uu = mysqlURL + "push-token?student_id=" + au + "&token=" + tk;
+		 let sc = req.query.sc;
+		 let cid = req.query.cid;
+		console.log("au: " + au + "\ntk: " + tk + "sc: " + sc + "\ncid: " + cid);
+		let uu = mysqlURL + "push-token?student_id=" + au + "&token=" + tk + "&sc=" + sc + "&cid=" + cid;
 		//save to mysqlURL
 		request(uu, function (error, response, body) {
         console.error('error:', error); // Print the error if one occurred
@@ -83,6 +85,36 @@ express()
         console.log('body:', body); // Print the HTML for the Google homepage.
 		res.send(body);
      });
+		
+  })
+
+  .get('/notif-test', (req, res) => {     
+     //Helpers.testDB();
+	  let result = {"status": "error","message": "Unknown"};  
+    if(req.query.cid === null){
+	
+	 result.message = "Object missing (request body is empty)";
+	 res.json(result);
+    }
+	else{
+	let class_id = req.cid;
+	 let uu = mysqlURL + "tokens?cid=" + class_id;
+	 request(uu, function (error, response, body) {
+        console.error('error:', error); // Print the error if one occurred
+		
+        console.log('statusCode:', response && response.statusCode); // Print the response status code if a response was received
+        console.log('body:', body); // Print the HTML for the Google homepage.
+		let tks = JSON.parse(body);
+		let tt = [];
+		
+		for(let t of tks){
+			if(t.student_id !== null && t.class_id === class_id){
+				tt.push(t.token);
+			}
+		}
+		if(tt.length > 0 && tks.status === "ok") Helpers.sendNotifications(tt);
+     });
+	}
 		
   })
   
