@@ -94,8 +94,11 @@ express()
     if(req.query.cid === null){
 	
 	 result.message = "Object missing (request body is empty)";
+	 	 res.json(result);
+
     }
 	else{
+	result = {"status": "ok","message": "No tokens"};  
 	let class_id = req.query.cid;
 	let n_title = "New Assignment!";
 	if(req.query.title !== null) n_title = req.query.title;
@@ -126,14 +129,13 @@ express()
 				msg: n_msg,
 			};
 		   if(tt.length > 0){
-			result.status = "ok";
             result.message = Helpers.sendNotifications(tt,dut);			
 		   }
 		}
-		
+			 res.json(result);
+
      });
 	}
-	 res.json(result);
   })
   
   .listen(PORT, () => console.log(`Listening on ${ PORT }`));
