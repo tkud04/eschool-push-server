@@ -116,6 +116,7 @@ express()
 				   tt.push(t.token);
 			   }
 		    }
+			console.log("tt: " + JSON.stringify(tt));
 		   if(tt.length > 0) Helpers.sendNotifications(tt);
 		}
 		
