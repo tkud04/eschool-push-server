@@ -74,7 +74,7 @@ const db = null;
 	  });
   }
   
-  function sendNotifications(pushTokens){
+  function sendNotifications(pushTokens,data){
 	  // Create a new Expo SDK client
 let expo = new Expo();
 
@@ -92,8 +92,9 @@ for (let pushToken of pushTokens) {
   // Construct a message (see https://docs.expo.io/versions/latest/guides/push-notifications.html)
   messages.push({
     to: pushToken,
+	title: data.title,
     sound: 'default',
-    body: 'Eschool NG Test notification',
+    body: data.message,
     data: { withSome: 'data' },
   })
 }
@@ -162,6 +163,7 @@ let receiptIdChunks = expo.chunkPushNotificationReceiptIds(receiptIds);
       // notification and information about an error, if one occurred.
       for (let receipt of receipts) {
         if (receipt.status === 'ok') {
+			//Update eschool core api here
           continue;
         } else if (receipt.status === 'error') {
           console.error(`There was an error sending a notification: ${receipt.message}`);
