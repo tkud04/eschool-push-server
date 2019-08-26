@@ -25,14 +25,14 @@
     "express": "^4.15.2",
     "mongodb": "3.3.0",
     "nodemailer": "^6.2.1",
-    "smtp-server": "^2.0.1"
+    "smtp-server": "^2.0.1",
+	"request": "2.88.0"
   },
   "devDependencies": {
     "eslint-config-nodemailer": "^1.0.0",
     "grunt": "^1.0.1",
     "grunt-cli": "^1.2.0",
     "grunt-eslint": "^19.0.0",
-    "request": "2.88.0",
     "tape": "^4.7.0"
   }
 }
