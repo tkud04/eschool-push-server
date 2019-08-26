@@ -137,6 +137,56 @@ express()
      });
 	}
   })
+
+  .get('/single-notif-test', (req, res) => {     
+     //Helpers.testDB();
+	  let result = {"status": "error","message": "Unknown"};  
+    if(req.query.student_id === null){
+	
+	 result.message = "Object missing (request body is empty)";
+	 	 res.json(result);
+
+    }
+	else{
+	result = {"status": "ok","message": "No tokens"};  
+	let student_id = req.query.student_id;
+	let n_title = "New Assignment!";
+	if(req.query.title !== null) n_title = req.query.title;
+	let n_msg = "You have a new assignment. Click to open";
+	if(req.query.msg !== null) n_msg = req.query.msg;
+	
+	 let uu = mysqlURL + "token?student_id=" + student_id;
+	 request(uu, function (error, response, body) {
+        console.error('error:', error); // Print the error if one occurred
+		
+        console.log('statusCode:', response && response.statusCode); // Print the response status code if a response was received
+        //console.log('body:', body); // Print the HTML for the Google homepage.
+		let tks = JSON.parse(body);
+		console.log(tks);
+		
+		let tt = [];
+		
+		
+		if(tks.status === "ok"){
+		   for(let t of tks.data){
+			   if(t.student_id !== null && t.class_id === class_id){
+				   tt.push(t.token);
+			   }
+		    }
+			console.log("tt: " + JSON.stringify(tt));
+			let dut = {
+				title: n_title,
+				msg: n_msg,
+			};
+		   if(tt.length > 0){
+            result.message = Helpers.sendNotifications(tt,dut);			
+		   }
+		}
+			 res.json(result);
+
+     });
+	}
+  })
   
   .listen(PORT, () => console.log(`Listening on ${ PORT }`));
   
