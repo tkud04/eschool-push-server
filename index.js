@@ -5,6 +5,7 @@ const Helpers = require('./Helpers');
 const { spawn } = require('child_process');
 const express = require('express');
 const path = require('path');
+const request = require('request');
 const PORT = process.env.PORT || 5000;
 
 let result = '';  
@@ -65,8 +66,15 @@ express()
 	}
   })
   .get('/db-test', (req, res) => {     
-     Helpers.testDB();
-		res.send("ok");
+     //Helpers.testDB();
+	 request(Helpers.mysqlURL, function (error, response, body) {
+        console.error('error:', error); // Print the error if one occurred
+		
+        console.log('statusCode:', response && response.statusCode); // Print the response status code if a response was received
+        console.log('body:', body); // Print the HTML for the Google homepage.
+		res.send(body);
+     });
+		
   })
   
   .listen(PORT, () => console.log(`Listening on ${ PORT }`));
