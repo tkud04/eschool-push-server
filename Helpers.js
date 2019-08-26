@@ -92,7 +92,7 @@ for (let pushToken of pushTokens) {
   // Construct a message (see https://docs.expo.io/versions/latest/guides/push-notifications.html)
   messages.push({
     to: pushToken,
-	title: data.title,
+	//title: data.title,
     sound: 'default',
     body: data.message,
     data: { withSome: 'data' },

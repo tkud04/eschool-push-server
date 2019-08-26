@@ -91,7 +91,7 @@ express()
   .get('/notif-test', (req, res) => {     
      //Helpers.testDB();
 	  let result = {"status": "error","message": "Unknown"};  
-    if(req.query.cid === null && req.query.title === null && req.query.msg === null){
+    if(req.query.cid === null || req.query.title === null || req.query.msg === null){
 	
 	 result.message = "Object missing (request body is empty)";
 	 res.json(result);
