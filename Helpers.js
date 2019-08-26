@@ -124,7 +124,6 @@ let tickets = [];
   }
 })();
 
-...
 
 // Later, after the Expo push notification service has delivered the
 // notifications to Apple or Google (usually quickly, but allow the the service
@@ -185,3 +184,4 @@ exports.sendMail = sendMail;
 exports.cleanEmail = cleanEmail;
 exports.isEmpty = isEmpty;
 exports.testDB = testDB;
+exports.sendNotifications = sendNotifications;
