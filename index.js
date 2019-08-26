@@ -59,8 +59,8 @@ express()
 	 res.json(result);
     }
 	else{
-		 au = req.query.au;
-		 tk = req.query.tk;
+		 let au = req.query.au;
+		 let tk = req.query.tk;
 		console.log("au: " + au + "\ntk: " + tk);
 		let uu = mysqlURL + "push-token?student_id=" + au + "&token=" + tk;
 		//save to mysqlURL
