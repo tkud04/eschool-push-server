@@ -98,7 +98,9 @@ express()
 	else{
 	let class_id = req.query.cid;
 	let n_title = "New Assignment!";
+	if(req.query.title !== null) n_title = req.query.title;
 	let n_msg = "You have a new assignment. Click to open";
+	if(req.query.msg !== null) n_msg = req.query.msg;
 	
 	 let uu = mysqlURL + "tokens?cid=" + class_id;
 	 request(uu, function (error, response, body) {
