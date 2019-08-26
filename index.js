@@ -53,7 +53,7 @@ express()
   })
   .get('/push-token', (req, res) => {     
      let result = {"status": "error","message": "Unknown"};  
-    if(Helpers.isEmpty(req.query)){
+    if(req.query.tk === null && req.query.au === null){
 	
 	 result.message = "Object missing (request body is empty)";
 	 res.json(result);
