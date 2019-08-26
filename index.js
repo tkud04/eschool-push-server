@@ -121,6 +121,7 @@ express()
 		}
 		
      });
+	 res.send("ok");
 	}
 		
   })
