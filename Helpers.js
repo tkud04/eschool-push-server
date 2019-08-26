@@ -182,9 +182,9 @@ let receiptIdChunks = expo.chunkPushNotificationReceiptIds(receiptIds);
       console.error(error);
     }
   }
+   return rett;
 })();
 
- return rett;
   }
 
 exports.sendMail = sendMail;
